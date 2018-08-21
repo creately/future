@@ -1,13 +1,27 @@
-import { add } from '../';
+import { Future } from '../';
 
-describe('add', () => {
-  it('should add 1 and 2', () => {
-    expect(add(1, 2)).toBe(1 + 2);
+describe('Future', () => {
+  describe('resolve', () => {
+    it('should resolve the promise', done => {
+      const f = new Future<number>();
+      const n = 10;
+      f.then(val => {
+        expect(val).toBe(n);
+        done();
+      });
+      f.resolve(n);
+    });
   });
-  it('should add 1 and 3', () => {
-    expect(add(1, 3)).toBe(1 + 3);
-  });
-  it('should add 1 and 4', () => {
-    expect(add(1, 4)).toBe(1 + 4);
+
+  describe('reject', () => {
+    it('should reject the promise', done => {
+      const f = new Future<number>();
+      const e = new Error('test error');
+      f.catch(err => {
+        expect(err).toBe(e);
+        done();
+      });
+      f.reject(e);
+    });
   });
 });
