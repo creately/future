@@ -1,6 +1,7 @@
 src
 __tests__
 coverage
+dist/__tests.*
 
 karma.conf.js
 tsconfig.json
