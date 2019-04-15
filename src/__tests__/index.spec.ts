@@ -1,9 +1,9 @@
-import { Future } from '../';
+import { createFuture } from '../';
 
 describe('Future', () => {
   describe('resolve', () => {
     it('should resolve the promise', done => {
-      const f = new Future<number>();
+      const f = createFuture<number>();
       const n = 10;
       f.then(val => {
         expect(val).toBe(n);
@@ -15,7 +15,7 @@ describe('Future', () => {
 
   describe('reject', () => {
     it('should reject the promise', done => {
-      const f = new Future<number>();
+      const f = createFuture<number>();
       const e = new Error('test error');
       f.catch(err => {
         expect(err).toBe(e);
